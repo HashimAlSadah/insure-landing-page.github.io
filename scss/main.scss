@@ -1,0 +1,567 @@
+@import "./config";
+
+.header{
+    position: relative;
+}
+
+.nav{
+    padding: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+    max-width: 1100px;
+    margin: 0 auto;
+    @include atMediaQ(900px){
+        padding: 1.5em 3em;
+    }
+
+    .logo{
+        width: 120px;
+    }
+
+    .menu{
+        position: absolute;
+        top: 80px;
+        bottom: 30%;
+        left: 0;
+        right: 0;
+        background-color: $dark-violet;
+        text-align: center;
+        background-image: url("../images/mobile/bg-pattern-mobile-nav.svg");
+        background-repeat: no-repeat;
+        background-position: right bottom;
+        background-size: contain;
+        transform: translateY(-150%);
+        transition: all 0.5s ease-in-out;
+        z-index: 100;
+
+        &.active{
+            transform: translateY(0);
+        }
+
+        @include atMediaQ(600px){
+            bottom: 0;
+            background-image: url("../images/mobile/bg-pattern-intro-left-mobile.svg"), url("../images/mobile/bg-pattern-how-we-work-mobile.svg");
+            background-position: top left, right top;
+            background-size: auto, auto 100%;
+        }
+
+        @include atMediaQ(900px){
+            position: static;
+            display: flex;
+            align-items: center;
+            gap: 2em;
+            transform: translateY(0);
+            background-color: transparent;
+            background-image: none;
+        }
+    }
+    
+    li{
+        margin: 3.5em 0;
+        @include atMediaQ(900px){
+            margin: 0;
+        }
+    }
+
+    li a{
+        text-transform: uppercase;
+        color: $very-light-gray;
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+        @include atMediaQ(900px){
+            color: $dark-grayish-violet;
+            font-size: 1rem;
+            transition: all 0.4s ease;
+
+            &:hover{
+                color: $very-dark-violet;
+            }
+        }
+    }
+
+    li:last-child a{
+        display: block;
+        width: 80%;
+        max-width: 350px;
+        margin: 0 auto;
+        border: 2px solid $very-light-gray;
+        padding: 0.75em 0;
+        @include atMediaQ(900px){
+            width: unset;
+            border: 2px solid $very-dark-violet;
+            color: $dark-violet;
+            padding: 0.5em 1em;
+
+            &:hover{
+                color: $very-light-gray;
+                background-color: $very-dark-violet;
+            }
+        }
+    }
+
+    .toggle-hamburger{
+        position: relative;
+        width: 32px;
+        cursor: pointer;
+        @include atMediaQ(900px){
+            display: none;
+        }
+    }
+
+    .open, .close{
+        pointer-events: none;
+    }
+
+    .close{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 0;
+        opacity: 0;
+        transition: all 0.5s ease-in-out;
+    }
+
+}
+
+.header .intro{
+    position: relative;
+    text-align: center;
+    color: $very-light-gray;
+    background-color: $dark-violet;
+
+    &::after{
+        content: "";
+        position: absolute;
+        top: 0px;
+        left: 0;
+        right: 0;
+        bottom: -180px;
+        background-image: url("../images/mobile/bg-pattern-intro-right-mobile.svg");
+        background-repeat: no-repeat;
+        background-position: 100% 100%;
+        pointer-events: none;
+    }
+
+    @include atMediaQ(600px){
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        gap: 2em;
+        
+        & > *{
+            flex: 1 1 50%;
+        }
+
+        &::after{
+            background-image: none;
+        }
+    }
+
+
+    @include atMediaQ(1100px){
+
+        justify-content: center;
+        gap: 3em;
+        background-image: url("../images/desktop/bg-pattern-intro-right-desktop.svg");
+        background-repeat: no-repeat;
+        background-position: right top;
+        background-size: 400px; 
+
+        .hero img{
+            position: relative;
+            top: 4em;
+            right: 2em;
+        }
+       
+        &::before{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: -270px;
+            background-image: url("../images/desktop/bg-pattern-intro-left-desktop.svg");
+            background-repeat: no-repeat;
+            background-position: left bottom;
+            background-size: 13%;
+            
+        }
+    }
+
+    @include atMediaQ(1440px){
+        background-image: none;
+        &::after{
+            content: "";
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            position: absolute;
+            background-image: url("../images/desktop/bg-pattern-intro-right-desktop.svg");
+            background-repeat: no-repeat;
+            background-position: right top;
+            background-size: 380px;
+        
+        }
+    }
+
+    .hero{
+        @include atMediaQ(600px){
+            position: relative;
+            align-self: center;
+            top: 50%;
+            max-width: 400px;
+        }
+
+        @include atMediaQ(1440px){
+            max-width: 500px;
+        }
+    }
+
+
+    &__main-content{
+        position: relative;
+        padding: 4em 1.6em;
+        background-image: url("../images/mobile/bg-pattern-intro-left-mobile.svg");
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        max-width: 550px;
+        
+        @include atMediaQ(600px){
+            &::after{
+                display: none;
+            }
+        }
+
+        @include atMediaQ(810px){
+            padding-left: 4em;
+            text-align: left;
+        }
+
+        @include atMediaQ(1100px){
+            padding: 0;
+            background-image: none;
+            align-self: center;
+        }
+
+        //Special design for 1440px width and more
+
+        @include atMediaQ(1440px){
+            max-width: 600px;
+        }
+    }
+
+
+    h1{
+        position: relative;
+        font-size: 2.5rem;
+        line-height: 1.1;
+        margin: 0.5em 0;
+        @include atMediaQ(1100px){
+            max-width: max-content;
+            font-size: 3.8rem;
+            margin-top: 0;
+            &::before{
+                content: "";
+                position: absolute;
+                width: 30%;
+                top: -20px;
+                height: 1px;
+                background-color: $very-light-gray;
+            }
+        }
+        @include atMediaQ(1440px){
+            font-size: 4.2rem;
+        }
+    }
+
+    p{
+        line-height: 1.5;
+        @include atMediaQ(1440px){
+            font-size: 1.1rem;
+        }
+    }
+
+    a{  
+        display: block;
+        width: max-content;
+        margin: 2em auto;
+        padding: 0.5em 1.5em;
+        color: inherit;
+        text-transform: uppercase;
+        font-size: 1.1rem;
+        border: 2px solid $very-light-gray;
+        transition: all 0.4s ease;
+        @include atMediaQ(810px){
+            margin: 2em 0;
+            margin-bottom: 0;
+            
+            &:hover{
+                color: $dark-violet;
+                background-color: $very-light-gray;
+            }
+        }
+    }
+}
+
+// header is Done. Main Starts 
+
+.main{
+    margin: 0 2em;
+    @include atMediaQ(1100px){
+        margin-top: 6em;
+    }
+}
+
+.features{
+    padding: 10em 1.6em 8em 1.6em;
+    text-align: center;
+    max-width: 1100px;
+    margin: 0 auto;
+
+    @include atMediaQ(1080px){
+        text-align: left;
+        padding: 10em 0 8em 0;
+    }
+
+    h1{
+        position: relative;
+        max-width: max-content;
+        font-size: 2.6rem;
+        margin: 0 auto 1.5em auto; 
+        &::before{
+            content: "";
+            position: absolute;
+            width: 60%;
+            top: -25px;
+            left: 50%;
+            height: 1px;
+            background-color: rgb(181, 164, 182);
+            transform: translateX(-50%);
+        }
+
+        @include atMediaQ(1080px){
+            margin: 0 0 1.5em 0;
+
+            &::before{
+                left: 0;
+                transform: translateX(0);
+            }
+        }
+    }
+
+    &__list{
+        @include atMediaQ(810px){
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2em;
+        }
+    }
+
+    .card{
+        flex: 1 1 300px;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+
+    .card + .card{
+        margin-top: 3em;
+        @include atMediaQ(810px){
+            margin-top: 0;
+        }
+    }
+    
+    img{
+        width: 80px;
+        margin: 0 auto;
+        @include atMediaQ(1080px){
+            margin: 0;
+        }
+    }
+
+    h2{
+        margin: 1em 0 0.5em 0;
+    }
+
+    p{
+        color: $dark-grayish-violet;
+    }
+
+}
+
+.CTA{
+    background-image: url("../images/mobile/bg-pattern-how-we-work-mobile.svg");
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-size: contain;
+    padding: 5.5em 2em;
+    margin: 0 1.5em 8em ;
+    background-color: $dark-violet;
+    color: $very-light-gray;
+    text-align: center;
+    max-width: 1100px;
+    @include atMediaQ(810px){
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2em;
+        background-image: url("../images/desktop/bg-pattern-how-we-work-desktop.svg");
+        text-align: left;
+        padding: 4em;
+        margin: 0 auto 8em auto;
+    }
+    
+    h1{
+        font-size: 2.3rem;
+        line-height: 1.1;
+        margin-bottom: 1em;
+        @include atMediaQ(810px){
+            margin: 0;
+            font-size: 3rem;
+        }
+    }
+
+    a{
+        display: block;
+        max-width: max-content;
+        text-align: center;
+        border: 2px solid $very-light-gray;
+        font-size: 1.1rem;
+        padding: 0.5em 1.2em;
+        margin: 0 auto;
+        letter-spacing: 1.3px;
+        text-transform: uppercase;
+        transition: all 0.4s ease;
+        @include atMediaQ(810px){
+            margin: 0;
+            &:hover{
+                color: $dark-violet;
+                background-color: $very-light-gray;
+            }
+        }
+    }
+}
+
+.footer{
+    padding: 5em 0;
+    background-color: rgba(250, 250, 250, 1);
+    text-align: center;
+    background-image: url("../images/mobile/bg-pattern-footer-mobile.svg");
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: contain;
+    margin: 0 -2em;
+    @include atMediaQ(600px){
+        background-image: none;
+    }
+    @include atMediaQ(810px){
+        background-image: url("../images/desktop/bg-pattern-footer-desktop.svg");
+        background-position: left top;
+        background-size: auto;
+        text-align: left;
+    }
+
+    &__logo{
+        width: 110px;
+        margin: 0 auto;
+        @include atMediaQ(810px){
+            margin: 0;
+        }
+    }
+
+    .social-media{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.75em;
+        margin: 2.0em 0; 
+        @include atMediaQ(810px){
+            margin: 0;
+        }
+    }
+
+    svg{
+        cursor: pointer;
+        path{
+            transition: all 0.4s ease;
+        }    
+
+       &:hover path{
+        fill: $dark-violet;
+       }
+    }
+
+    hr{
+        width: 85%;
+        border: 0.4px solid $dark-grayish-violet;
+        opacity: 0.3;
+        margin: 0 auto 2.5em auto;
+    }
+
+    .footer-top{
+        @include atMediaQ(810px) {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 85%;
+            margin: 0 auto 1em auto;
+        }
+    }
+
+    .list-of-menus{
+        @include atMediaQ(600px){
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2.5em 0;
+            width: 85%;
+            margin: 0 auto;
+        }
+    }
+
+    &__menu{
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        font-size: 0.9rem;
+
+        li:first-child{
+            margin-bottom: 2.2em;
+            color: $dark-grayish-violet;
+        }
+    }
+
+    &__menu + &__menu{
+        margin-top: 2.5em;
+        @include atMediaQ(600px){
+            margin-top: 0;
+        }
+    }
+
+    li + li{
+        margin-top: 1em;
+        color: $very-dark-violet;
+        font-weight: 700;
+    }
+
+    li a{
+        position: relative;
+        &::after{
+            content: "";
+            position: absolute;
+            width: 0;
+            bottom: 0;
+            left: 0;
+            height: 1px;
+            background-color: $dark-violet;
+            transition: all 0.4s ease;
+        }
+
+        @include atMediaQ(810px){
+            &:hover::after{
+                width: 100%;
+            }
+        }
+    }
+}
